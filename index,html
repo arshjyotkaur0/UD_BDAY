@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HBD UDANTIKA 🎉</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Patrick+Hand&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --pink:#ff3d9a;
+    --pink-deep:#d4007a;
+    --pink-pale:#ffd9ec;
+    --lime:#c4f730;
+    --lime-deep:#7fb800;
+    --yellow:#ffe14d;
+    --orange:#ff8a3d;
+    --purple:#9b5de5;
+    --sky:#4dd6ff;
+    --cream:#fff8ec;
+    --ink:#1a1a2e;
+    --ink-soft:#4a4a6a;
+    --paper:#ffffff;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'DM Sans',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(circle at 10% 10%, rgba(255,61,154,0.06) 0, transparent 35%),
+      radial-gradient(circle at 90% 30%, rgba(196,247,48,0.10) 0, transparent 35%),
+      radial-gradient(circle at 50% 90%, rgba(77,214,255,0.08) 0, transparent 35%);
+  }
+  h1,h2,h3,.display{font-family:'Baloo 2',sans-serif;}
+  .handwrite{font-family:'Patrick Hand',cursive;}
+
+  /* confetti canvas */
+  #confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:9998;}
+
+  /* nav */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;justify-content:center;gap:1.8rem;
+    padding:0.9rem 1.5rem;
+    background:rgba(255,248,236,0.9);
+    backdrop-filter:blur(10px);
+    border-bottom:3px solid var(--ink);
+    flex-wrap:wrap;
+  }
+  nav a{
+    font-family:'Baloo 2',sans-serif;font-weight:600;
+    font-size:13px;color:var(--ink);text-decoration:none;
+    padding:4px 10px;border-radius:10px;
+    transition:all 0.2s;
+  }
+  nav a:hover{background:var(--lime);transform:rotate(-2deg);}
+
+  section{padding:5.5rem 1.5rem;position:relative;}
+
+  /* HERO */
+  #hero{
+    min-height:100vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;
+    padding:7rem 1.5rem 4rem;
+  }
+  .sticker{
+    position:absolute;font-size:3rem;user-select:none;
+    animation:wiggle 4s ease-in-out infinite;
+  }
+  @keyframes wiggle{0%,100%{transform:rotate(-8deg);}50%{transform:rotate(8deg);}}
+  .sticker.s1{top:14%;left:8%;animation-delay:0s;}
+  .sticker.s2{top:18%;right:10%;animation-delay:0.5s;font-size:2.5rem;}
+  .sticker.s3{bottom:18%;left:12%;animation-delay:1s;font-size:2.8rem;}
+  .sticker.s4{bottom:14%;right:8%;animation-delay:1.5s;}
+  .tape{
+    display:inline-block;background:var(--yellow);
+    border:2px solid var(--ink);color:var(--ink);
+    font-family:'Patrick Hand',cursive;font-size:15px;
+    padding:5px 16px;transform:rotate(-3deg);
+    margin-bottom:1.5rem;box-shadow:3px 3px 0 var(--ink);
+  }
+  .hero h1{
+    font-size:clamp(2.8rem,11vw,6.5rem);
+    font-weight:800;line-height:1;
+    color:var(--ink);
+    -webkit-text-stroke:2px var(--ink);
+    margin-bottom:0.5rem;
+  }
+  .hero h1 .pop{
+    color:var(--pink);
+    -webkit-text-stroke:2px var(--ink);
+    display:inline-block;
+    transform:rotate(-3deg);
+  }
+  .hero-sub{
+    font-family:'Patrick Hand',cursive;
+    font-size:clamp(1.1rem,3vw,1.6rem);
+    color:var(--ink-soft);margin-bottom:2rem;
+  }
+  .stat-row{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;margin-top:1.5rem;}
+  .stat-chip{
+    background:var(--paper);border:3px solid var(--ink);
+    border-radius:16px;padding:0.9rem 1.4rem;
+    box-shadow:4px 4px 0 var(--ink);
+    text-align:center;transition:transform 0.2s;
+  }
+  .stat-chip:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);}
+  .stat-chip .n{font-size:2rem;font-weight:800;color:var(--pink-deep);display:block;}
+  .stat-chip .l{font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-soft);font-weight:500;}
+  .scroll-cta{
+    margin-top:3rem;font-family:'Patrick Hand',cursive;
+    font-size:16px;color:var(--ink-soft);
+    animation:bob 2s infinite;
+  }
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
+
+  /* section heads */
+  .eyebrow{
+    display:inline-block;font-family:'Baloo 2',sans-serif;font-weight:700;
+    font-size:12px;letter-spacing:0.08em;text-transform:uppercase;
+    background:var(--ink);color:var(--lime);
+    padding:4px 14px;border-radius:20px;margin-bottom:0.8rem;
+  }
+  .head-row{text-align:center;margin-bottom:3rem;}
+  .head-row h2{font-size:clamp(2rem,6vw,3rem);font-weight:800;line-height:1.15;}
+  .head-row h2 .pop{color:var(--pink-deep);}
+  .head-row p{font-family:'Patrick Hand',cursive;color:var(--ink-soft);font-size:16px;max-width:480px;margin:0.8rem auto 0;}
+
+  /* TIMELINE */
+  #timeline{background:linear-gradient(180deg,var(--cream),#fff2f8);}
+  .tl-wrap{max-width:760px;margin:0 auto;position:relative;}
+  .tl-spine{
+    position:absolute;left:28px;top:0;bottom:0;width:4px;
+    background:repeating-linear-gradient(180deg,var(--pink) 0 10px,transparent 10px 18px);
+    border-radius:4px;
+  }
+  @media(min-width:700px){.tl-spine{left:50%;transform:translateX(-50%);}}
+  .tl-card{
+    position:relative;margin-left:60px;margin-bottom:2rem;
+    background:var(--paper);border:3px solid var(--ink);border-radius:18px;
+    padding:1.3rem 1.5rem;box-shadow:5px 5px 0 var(--ink);
+    opacity:0;transform:translateY(24px) rotate(-1deg);
+    transition:all 0.5s ease;
+    max-width:560px;
+  }
+  .tl-card.visible{opacity:1;transform:translateY(0) rotate(0.5deg);}
+  .tl-card:nth-child(even){transform:translateY(24px) rotate(1deg);}
+  .tl-card:nth-child(even).visible{transform:translateY(0) rotate(-0.5deg);}
+  @media(min-width:700px){
+    .tl-card:nth-child(odd){margin-left:0;margin-right:calc(50% + 40px);}
+    .tl-card:nth-child(even){margin-left:calc(50% + 40px);margin-right:0;}
+  }
+  .tl-dot{
+    position:absolute;left:-46px;top:18px;width:36px;height:36px;
+    background:var(--yellow);border:3px solid var(--ink);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+    z-index:2;
+  }
+  @media(min-width:700px){
+    .tl-card:nth-child(odd) .tl-dot{left:auto;right:-58px;}
+    .tl-card:nth-child(even) .tl-dot{left:-58px;}
+  }
+  .tl-year{
+    display:inline-block;background:var(--lime);color:var(--ink);
+    font-weight:700;font-size:11px;padding:2px 10px;border-radius:10px;
+    border:2px solid var(--ink);margin-bottom:8px;
+  }
+  .tl-card h3{font-size:1.2rem;margin-bottom:6px;}
+  .tl-card p{font-size:14px;color:var(--ink-soft);line-height:1.6;}
+  .tl-card .quote{
+    font-family:'Patrick Hand',cursive;color:var(--pink-deep);
+    font-size:16px;display:block;margin-top:6px;
+  }
+
+  /* GALLERY */
+  #gallery{background:#fff;}
+  .gallery-grid{
+    max-width:960px;margin:0 auto;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1.1rem;
+  }
+  .photo-slot{
+    aspect-ratio:1/1;background:var(--pink-pale);
+    border:3px solid var(--ink);border-radius:14px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:0.8rem;position:relative;cursor:pointer;
+    box-shadow:4px 4px 0 var(--ink);transition:transform 0.2s;
+    overflow:hidden;
+  }
+  .photo-slot:nth-child(odd){transform:rotate(-2deg);}
+  .photo-slot:nth-child(even){transform:rotate(2deg);}
+  .photo-slot:hover{transform:scale(1.04) rotate(0deg);z-index:2;}
+  .photo-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:3;}
+  .photo-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .photo-slot .ic{font-size:1.8rem;margin-bottom:4px;position:relative;z-index:1;pointer-events:none;}
+  .photo-slot .lb{font-family:'Patrick Hand',cursive;font-size:13px;color:var(--pink-deep);position:relative;z-index:1;pointer-events:none;}
+  .photo-slot .cap{
+    position:absolute;bottom:0;left:0;right:0;z-index:4;
+    background:linear-gradient(to top, rgba(26,26,46,0.75), transparent);
+    color:#fff;font-family:'Patrick Hand',cursive;font-size:12px;
+    padding:1.2rem 0.5rem 0.4rem;display:none;pointer-events:none;
+  }
+  .gallery-note{
+    text-align:center;font-family:'Patrick Hand',cursive;
+    color:var(--ink-soft);margin-top:1.5rem;font-size:14px;
+  }
+
+  /* INSIDE JOKES */
+  #jokes{background:linear-gradient(180deg,#fff2f8,var(--cream));}
+  .joke-grid{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;}
+  .joke-card{
+    background:var(--yellow);border:3px solid var(--ink);border-radius:16px;
+    padding:1.4rem;cursor:pointer;box-shadow:4px 4px 0 var(--ink);
+    transition:transform 0.2s;text-align:center;min-height:120px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .joke-card:hover{transform:translate(-2px,-2px);}
+  .joke-card.flipped{background:var(--paper);}
+  .joke-front{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:16px;}
+  .joke-back{font-family:'Patrick Hand',cursive;font-size:15px;color:var(--ink-soft);display:none;}
+  .joke-card.flipped .joke-front{display:none;}
+  .joke-card.flipped .joke-back{display:block;}
+
+  /* HIGHS LOWS */
+  #lowshighs{background:var(--cream);}
+  .moment-grid{max-width:880px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;}
+  @media(max-width:640px){.moment-grid{grid-template-columns:1fr;}}
+  .moment-card{
+    border:3px solid var(--ink);border-radius:18px;padding:1.6rem;
+    box-shadow:5px 5px 0 var(--ink);transition:transform 0.2s;
+  }
+  .moment-card:hover{transform:translate(-3px,-3px);}
+  .moment-card.high{background:#eaffce;}
+  .moment-card.low{background:#e6dcff;}
+  .moment-card .ic{font-size:1.8rem;margin-bottom:0.6rem;}
+  .moment-card h3{font-size:1.15rem;margin-bottom:0.5rem;}
+  .moment-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+
+  /* QUIZ */
+  #quiz{background:#fff;}
+  .quiz-box{
+    max-width:560px;margin:0 auto;background:var(--paper);
+    border:3px solid var(--ink);border-radius:20px;
+    padding:1.8rem;box-shadow:6px 6px 0 var(--ink);
+  }
+  .quiz-progress{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:12px;color:var(--pink-deep);margin-bottom:0.6rem;}
+  .quiz-q{font-size:1.1rem;font-weight:600;margin-bottom:1.2rem;line-height:1.4;}
+  .quiz-opts{display:flex;flex-direction:column;gap:0.7rem;}
+  .quiz-opt{
+    border:2.5px solid var(--ink);background:#fff;border-radius:12px;
+    padding:0.8rem 1rem;font-size:14px;font-family:'DM Sans',sans-serif;
+    cursor:pointer;text-align:left;transition:all 0.15s;
+  }
+  .quiz-opt:hover{background:var(--lime);transform:translate(-2px,-2px);}
+  .quiz-opt.correct{background:var(--lime);}
+  .quiz-opt.wrong{background:#ffb3b3;}
+  .quiz-result{display:none;text-align:center;}
+  .quiz-result .score{font-size:2.5rem;font-weight:800;color:var(--pink-deep);}
+  .quiz-result p{font-family:'Patrick Hand',cursive;font-size:16px;margin-top:0.5rem;color:var(--ink-soft);}
+  .quiz-restart{
+    margin-top:1rem;border:2.5px solid var(--ink);background:var(--yellow);
+    border-radius:10px;padding:0.6rem 1.2rem;font-family:'Baloo 2',sans-serif;
+    font-weight:700;cursor:pointer;font-size:13px;
+  }
+
+  /* LETTER */
+  #letter{background:linear-gradient(180deg,var(--cream),#fff2f8);text-align:center;}
+  .letter-card{
+    max-width:680px;margin:0 auto;background:var(--paper);
+    border:3px solid var(--ink);border-radius:22px;padding:2.8rem 2.2rem;
+    box-shadow:7px 7px 0 var(--ink);position:relative;
+  }
+  .letter-card .tape{position:absolute;top:-18px;left:50%;transform:translateX(-50%) rotate(-4deg);}
+  .letter-dear{font-family:'Patrick Hand',cursive;font-size:1.2rem;color:var(--pink-deep);margin-bottom:1.3rem;}
+  .letter-body{font-size:1.05rem;line-height:1.85;text-align:left;font-weight:400;}
+  .letter-body p{margin-bottom:1.1rem;}
+  .letter-sign{font-family:'Patrick Hand',cursive;font-size:1.15rem;color:var(--pink-deep);text-align:right;margin-top:1.5rem;}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:#fff;text-align:center;padding:3rem 1.5rem;}
+  footer h2{font-size:2rem;color:var(--lime);margin-bottom:0.4rem;}
+  footer p{font-family:'Patrick Hand',cursive;font-size:14px;color:#ccc;}
+  .confetti-btn{
+    margin-top:1.5rem;background:var(--pink);color:#fff;border:3px solid #fff;
+    border-radius:30px;padding:0.8rem 2rem;font-family:'Baloo 2',sans-serif;
+    font-weight:700;font-size:15px;cursor:pointer;transition:transform 0.2s;
+  }
+  .confetti-btn:hover{transform:scale(1.05);}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<nav>
+  <a href="#hero">home</a>
+  <a href="#timeline">our story</a>
+  <a href="#gallery">pics</a>
+  <a href="#jokes">inside jokes</a>
+  <a href="#lowshighs">highs n lows</a>
+  <a href="#quiz">quiz</a>
+  <a href="#letter">letter</a>
+</nav>
+
+<section id="hero">
+  <div class="sticker s1">🎉</div>
+  <div class="sticker s2">⭐</div>
+  <div class="sticker s3">💅</div>
+  <div class="sticker s4">🔥</div>
+  <span class="tape">20 JUNE · OPERATION SURPRISE BDAY 🎂</span>
+  <h1>HAPPY <span class="pop">BIRTHDAY</span><br>UDANTIKA</h1>
+  <p class="hero-sub">my partner in crime since class 7, world's most chatpati human, certified main character of my life</p>
+  <div class="stat-row">
+    <div class="stat-chip"><span class="n">8</span><span class="l">years strong</span></div>
+    <div class="stat-chip"><span class="n">∞</span><span class="l">daily texts</span></div>
+    <div class="stat-chip"><span class="n">1</span><span class="l">ride or die</span></div>
+  </div>
+  <p class="scroll-cta">↓ scroll for chaos and feelings ↓</p>
+</section>
+
+<section id="timeline">
+  <div class="head-row">
+    <span class="eyebrow">since 2018</span>
+    <h2>the <span class="pop">whole</span> saga</h2>
+    <p>from "I didn't even like you" to "you're stuck with me forever," a totally accurate documentary</p>
+  </div>
+  <div class="tl-wrap">
+    <div class="tl-spine"></div>
+
+    <div class="tl-card">
+      <div class="tl-dot">🙄</div>
+      <span class="tl-year">2018 · Class 7</span>
+      <h3>the copyincident</h3>
+      <p>Ma'am introduced us and ngl, I did not vibe with you at first. Then you took my copies and vanished for 2-3 days. Iconic villain-origin-story entrance. 10/10 first impression, would not recommend.</p>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-dot">🚌</div>
+      <span class="tl-year">2018 · The school trip</span>
+      <h3>"pls aap mere saath rehna"</h3>
+      <p>You came up to me on the trip and said it like your life depended on it. Look at us now though — going on a trip again on 21st June, and I want to say the exact same line back to you. Full circle, no exit.</p>
+      <span class="quote">"please stay with me, I don't really know anyone else" — actual quote, never forgotten</span>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-dot">🎂</div>
+      <span class="tl-year">2019 · Class 8</span>
+      <h3>we became unserious besties</h3>
+      <p>You came to my birthday at home. We went on the school trip together. So many memories happened this year it deserves its own folder labeled "the golden era." (I have the photo. it's coming up below.)</p>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-dot">💻</div>
+      <span class="tl-year">2020 · Lockdown era</span>
+      <h3>teams calls saved the friendship</h3>
+      <p>World shuts down, we lock in harder. Daily Teams calls because apparently nothing — not even a global pandemic — could make us shut up. Since that year, talking daily became non-negotiable law.</p>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-dot">🛍️</div>
+      <span class="tl-year">2021 · Class 10</span>
+      <h3>vegas mall, just the two of us</h3>
+      <p>Mid-lockdown, still found a way to celebrate your birthday — just us, at Vegas Mall. Two unbelievably cute kids who had no idea this was going to be a forever thing. I have that photo too. We were so small.</p>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-dot">👯</div>
+      <span class="tl-year">2022 · Class 11</span>
+      <h3>certified inseparable</h3>
+      <p>Same section, attached at the hip, scoring similar marks and getting the same taunts from teachers who 100% knew "ye eksath hi rehte hai." Nobody else stood a chance at getting close. This was peak us.</p>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-dot">🥺</div>
+      <span class="tl-year">2023 · Class 12</span>
+      <h3>the hardest plot twist</h3>
+      <p>I left school for JEE prep without warning you first. You were so hurt — and still showed up for me anyway. I missed your birthday and we were both wrecked about it. New place, new struggles, but your texts made it bearable. We survived the distance, barely, together.</p>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-dot">🎓</div>
+      <span class="tl-year">2024-25 · College era</span>
+      <h3>the glow up of the friendship</h3>
+      <p>You helped me through boards prep. Happy I made it to college, low-key sad I went far. Still talked every single day. Everyone in my current life knows exactly who "Udantika" is. You're not background noise — you're a whole main character arc.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="head-row">
+    <span class="eyebrow">photo dump</span>
+    <h2>the <span class="pop">evidence</span></h2>
+    <p>tap any box below to drop in your real pics — class 7 to now, all of it</p>
+  </div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+  <p class="gallery-note">📸 tap a box, pick a pic from your phone, done. add as many as you want.</p>
+</section>
+
+<section id="jokes">
+  <div class="head-row">
+    <span class="eyebrow">for us only</span>
+    <h2>inside <span class="pop">jokes</span></h2>
+    <p>tap a card to reveal it — outsiders will not understand and that's the point</p>
+  </div>
+  <div class="joke-grid" id="jokeGrid"></div>
+</section>
+
+<section id="lowshighs">
+  <div class="head-row">
+    <span class="eyebrow">the real stuff</span>
+    <h2>highs <span class="pop">&</span> lows</h2>
+    <p>every era had its chaos. we survived all of it, obviously</p>
+  </div>
+  <div class="moment-grid">
+    <div class="moment-card high">
+      <div class="ic">☀️</div>
+      <h3>the highs we lived</h3>
+      <p>School trips, birthdays at each other's houses, class 11 chaos, getting taunted by teachers together, you being genuinely happy when I got into college even though it meant I'd be far. Daily talks that never once felt like a chore.</p>
+    </div>
+    <div class="moment-card low">
+      <div class="ic">🌧️</div>
+      <h3>the lows we survived</h3>
+      <p>Lockdown isolation, me leaving school without telling you first, missing your birthday and you missing mine, being at my lowest and messaging you because you were the safest place. Never once made me feel like too much.</p>
+    </div>
+    <div class="moment-card high">
+      <div class="ic">🤝</div>
+      <h3>fights, egos, and bouncing back</h3>
+      <p>We've fought. We've had ego moments. We've gone quiet for a bit. And somehow there's no important moment in my life — good or bad — that doesn't have you in it somewhere.</p>
+    </div>
+    <div class="moment-card low">
+      <div class="ic">💌</div>
+      <h3>the thing I needed to say</h3>
+      <p>I am genuinely bad at keeping things going. I forget, I get busy, I'm not great with emotions. You showed up anyway, every single day, for 8 years. That's not normal. That's rare. That's you.</p>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="head-row">
+    <span class="eyebrow">put her to the test</span>
+    <h2>does she know <span class="pop">herself?</span></h2>
+    <p>a completely scientific quiz, no cap</p>
+  </div>
+  <div class="quiz-box">
+    <div id="quizActive">
+      <div class="quiz-progress" id="quizProgress">question 1 of 5</div>
+      <div class="quiz-q" id="quizQ"></div>
+      <div class="quiz-opts" id="quizOpts"></div>
+    </div>
+    <div class="quiz-result" id="quizResult">
+      <div class="score" id="quizScore"></div>
+      <p id="quizMsg"></p>
+      <button class="quiz-restart" onclick="restartQuiz()">play again 🔁</button>
+    </div>
+  </div>
+</section>
+
+<section id="letter">
+  <div class="head-row">
+    <span class="eyebrow">ok but fr</span>
+    <h2>a letter <span class="pop">for you</span></h2>
+  </div>
+  <div class="letter-card">
+    <span class="tape">read this slowly pls</span>
+    <p class="letter-dear">Dear Udantika,</p>
+    <div class="letter-body">
+      <p>Baby, I'll be there for you no matter what.</p>
+      <p>I feel for you more than I show — more than you know. You are like a very important character of my life. Not a side character, not a guest appearance — a main one. The kind that shows up in every chapter, every season, every version of the story.</p>
+      <p>I'm not always great with emotions. I'm not always great at maintaining things. But you are. You showed up on my worst days, kept talking to me when I was far away and struggling to adjust, helped me through boards. You were happy when I joined college and quietly sad I was going far — and still called the next day like nothing changed.</p>
+      <p>Everyone in my life now knows who Udantika is. You're known by name, by reputation, by the way I talk about you. That doesn't happen with just anyone.</p>
+      <p>I'll always be there for your highs and your lows. Cheers to more years — more trips, more daily calls, more inside jokes, more of everything that makes us, us.</p>
+      <p>I love you so, so much. Happy birthday. 🎉</p>
+    </div>
+    <p class="letter-sign">— always yours, your favourite chaos partner</p>
+  </div>
+</section>
+
+<footer>
+  <h2>HAPPY BIRTHDAY UDANTIKA 🎂</h2>
+  <p>20 june · eight years · forever more to go</p>
+  <button class="confetti-btn" onclick="burstConfetti(150)">one more confetti for the road 🎊</button>
+</footer>
+
+<script>
+/* ---------- SOUND (tiny pop/sparkle synth, no external files) ---------- */
+let audioCtx;
+function playPop(){
+  try{
+    audioCtx = audioCtx || new (window.AudioContext||window.webkitAudioContext)();
+    const o = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    o.type = 'sine';
+    o.frequency.setValueAtTime(600 + Math.random()*400, audioCtx.currentTime);
+    o.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.15);
+    g.gain.setValueAtTime(0.12, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.18);
+    o.connect(g); g.connect(audioCtx.destination);
+    o.start(); o.stop(audioCtx.currentTime + 0.18);
+  }catch(e){}
+}
+function playSparkle(){
+  try{
+    audioCtx = audioCtx || new (window.AudioContext||window.webkitAudioContext)();
+    [880,1200,1600].forEach((f,i)=>{
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.type = 'triangle';
+      o.frequency.value = f;
+      g.gain.setValueAtTime(0.06, audioCtx.currentTime + i*0.05);
+      g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + i*0.05 + 0.2);
+      o.connect(g); g.connect(audioCtx.destination);
+      o.start(audioCtx.currentTime + i*0.05);
+      o.stop(audioCtx.currentTime + i*0.05 + 0.2);
+    });
+  }catch(e){}
+}
+
+/* ---------- CONFETTI ---------- */
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+function resizeCanvas(){canvas.width = window.innerWidth; canvas.height = window.innerHeight;}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+let confettiPieces = [];
+const confettiColors = ['#ff3d9a','#c4f730','#ffe14d','#4dd6ff','#9b5de5','#ff8a3d'];
+function burstConfetti(count=80){
+  for(let i=0;i<count;i++){
+    confettiPieces.push({
+      x: Math.random()*canvas.width,
+      y: -20 - Math.random()*100,
+      r: 4+Math.random()*5,
+      c: confettiColors[Math.floor(Math.random()*confettiColors.length)],
+      vx: (Math.random()-0.5)*4,
+      vy: 2+Math.random()*4,
+      rot: Math.random()*360,
+      vr: (Math.random()-0.5)*10,
+      shape: Math.random()>0.5?'rect':'circle'
+    });
+  }
+  playSparkle();
+  if(!confettiRunning){confettiRunning=true; animateConfetti();}
+}
+let confettiRunning = false;
+function animateConfetti(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  confettiPieces.forEach(p=>{
+    p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+    ctx.save();
+    ctx.translate(p.x,p.y);
+    ctx.rotate(p.rot*Math.PI/180);
+    ctx.fillStyle = p.c;
+    if(p.shape==='rect'){ctx.fillRect(-p.r,-p.r/2,p.r*2,p.r);}
+    else{ctx.beginPath();ctx.arc(0,0,p.r,0,Math.PI*2);ctx.fill();}
+    ctx.restore();
+  });
+  confettiPieces = confettiPieces.filter(p=>p.y < canvas.height+30);
+  if(confettiPieces.length>0){requestAnimationFrame(animateConfetti);}
+  else{confettiRunning=false; ctx.clearRect(0,0,canvas.width,canvas.height);}
+}
+window.addEventListener('load', ()=> setTimeout(()=>burstConfetti(120), 400));
+
+/* ---------- TIMELINE REVEAL ---------- */
+const tlCards = document.querySelectorAll('.tl-card');
+const tlObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.2});
+tlCards.forEach(c=>tlObs.observe(c));
+
+/* ---------- GALLERY ---------- */
+const galleryData = [
+  {ic:'🙄',lb:'class 7 day one'},
+  {ic:'🚌',lb:'the trip, "saath rehna"'},
+  {ic:'🎂',lb:'my bday, you came'},
+  {ic:'✈️',lb:'class 8 school trip'},
+  {ic:'🛍️',lb:'vegas mall bday'},
+  {ic:'👯',lb:'class 11 bench buddies'},
+  {ic:'📚',lb:'studying for boards'},
+  {ic:'🎓',lb:'college era'},
+  {ic:'🥺',lb:'missing each other'},
+  {ic:'😂',lb:'random chaos day'},
+  {ic:'🌸',lb:'a good day'},
+  {ic:'💕',lb:'us, always'},
+  {ic:'🎉',lb:'a celebration'},
+  {ic:'📸',lb:'add your own'},
+  {ic:'✨',lb:'add your own'},
+  {ic:'💫',lb:'add your own'}
+];
+const galleryGrid = document.getElementById('galleryGrid');
+galleryData.forEach((d,i)=>{
+  const slot = document.createElement('div');
+  slot.className = 'photo-slot';
+  slot.id = 'slot'+i;
+  slot.innerHTML = `
+    <input type="file" accept="image/*" onchange="loadPhoto(this,${i})">
+    <div class="ic">${d.ic}</div>
+    <div class="lb">${d.lb}</div>
+    <div class="cap" id="cap${i}">${d.lb}</div>
+  `;
+  galleryGrid.appendChild(slot);
+});
+function loadPhoto(input, i){
+  const file = input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e=>{
+    const slot = document.getElementById('slot'+i);
+    let img = slot.querySelector('img');
+    if(!img){ img = document.createElement('img'); slot.appendChild(img); }
+    img.src = e.target.result;
+    slot.querySelector('.ic').style.display='none';
+    slot.querySelector('.lb').style.display='none';
+    document.getElementById('cap'+i).style.display='block';
+    playPop();
+    burstConfetti(20);
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ---------- INSIDE JOKES ---------- */
+const jokesData = [
+  {f:'the copy incident 📓', b:'you took my copies in class 7 and ghosted school for 3 days. never forgiven, never forgotten, still bringing it up.'},
+  {f:'"saath rehna" 🚌', b:'said with the energy of someone abandoned in a foreign country. it was a school trip, Udantika.'},
+  {f:'vegas mall kids 🛍️', b:'two tiny humans celebrating a birthday alone at a mall mid-lockdown like absolute legends.'},
+  {f:'class 11 reputation 👯', b:'teachers literally said "ye eksath hi rehte hai" as if it was a diagnosis.'},
+  {f:'[add your own here]', b:'replace this with one of your actual inside jokes — you said you\'d send more!'},
+  {f:'[add your own here]', b:'replace this with one of your actual inside jokes — you said you\'d send more!'}
+];
+const jokeGrid = document.getElementById('jokeGrid');
+jokesData.forEach((j,i)=>{
+  const card = document.createElement('div');
+  card.className = 'joke-card';
+  card.innerHTML = `<div class="joke-front">${j.f}</div><div class="joke-back">${j.b}</div>`;
+  card.onclick = ()=>{ card.classList.toggle('flipped'); playPop(); };
+  jokeGrid.appendChild(card);
+});
+
+/* ---------- QUIZ ---------- */
+const quizData = [
+  {
+    q: "In what class did you and your bestie first meet?",
+    opts: ["Class 5", "Class 7", "Class 9", "Class 11"],
+    correct: 1
+  },
+  {
+    q: "What did Udantika 'steal' right after they were introduced?",
+    opts: ["Her pen", "Her tiffin", "Her copies", "Her bag"],
+    correct: 2
+  },
+  {
+    q: "Where did they celebrate Udantika's birthday alone, just the two of them, mid-lockdown?",
+    opts: ["A cafe", "Vegas Mall", "Her house", "A park"],
+    correct: 1
+  },
+  {
+    q: "What kept the friendship alive through the 2020 lockdown?",
+    opts: ["Letters", "Teams calls", "Not talking at all", "Instagram only"],
+    correct: 1
+  },
+  {
+    q: "What class were they in when they left school for JEE prep without telling Udantika first?",
+    opts: ["Class 10", "Class 11", "Class 12", "After 12th"],
+    correct: 2
+  }
+];
+let quizIndex = 0;
+let quizScore = 0;
+
+function renderQuiz(){
+  const item = quizData[quizIndex];
+  document.getElementById('quizProgress').textContent = `question ${quizIndex+1} of ${quizData.length}`;
+  document.getElementById('quizQ').textContent = item.q;
+  const optsDiv = document.getElementById('quizOpts');
+  optsDiv.innerHTML = '';
+  item.opts.forEach((opt, idx)=>{
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt;
+    btn.onclick = ()=> selectAnswer(idx, btn);
+    optsDiv.appendChild(btn);
+  });
+}
+
+function selectAnswer(idx, btn){
+  const item = quizData[quizIndex];
+  const allBtns = document.querySelectorAll('.quiz-opt');
+  allBtns.forEach(b=>b.onclick=null);
+  if(idx === item.correct){
+    btn.classList.add('correct');
+    quizScore++;
+    playSparkle();
+  } else {
+    btn.classList.add('wrong');
+    allBtns[item.correct].classList.add('correct');
+    playPop();
+  }
+  setTimeout(()=>{
+    quizIndex++;
+    if(quizIndex < quizData.length){
+      renderQuiz();
+    } else {
+      showQuizResult();
+    }
+  }, 1100);
+}
+
+function showQuizResult(){
+  document.getElementById('quizActive').style.display = 'none';
+  document.getElementById('quizResult').style.display = 'block';
+  document.getElementById('quizScore').textContent = `${quizScore} / ${quizData.length}`;
+  let msg = '';
+  if(quizScore === quizData.length) msg = "she knows herself AND the friendship lore. flawless.";
+  else if(quizScore >= 3) msg = "pretty solid, but clearly someone (me) remembers things better 😌";
+  else msg = "babe... we need to talk. jk happy birthday regardless 💕";
+  document.getElementById('quizMsg').textContent = msg;
+  burstConfetti(quizScore === quizData.length ? 150 : 60);
+}
+
+function restartQuiz(){
+  quizIndex = 0; quizScore = 0;
+  document.getElementById('quizActive').style.display = 'block';
+  document.getElementById('quizResult').style.display = 'none';
+  renderQuiz();
+}
+renderQuiz();
+</script>
+</body>
+</html>
